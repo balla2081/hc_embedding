@@ -76,7 +76,6 @@ def hc_embedding(G, pre_weighting='RA1', embedding=None, angular='EA'):
     radii = radial_coord.radial_coord_deg(G, beta)
 
     coords = coords * radii[..., None]
-    print(coords)
     return {node: coord for node, coord in zip(G.nodes(), coords)}
 
 
