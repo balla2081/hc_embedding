@@ -3,6 +3,6 @@ import powerlaw
 
 
 def get_pl_exponent(g):
-    degree = np.array(list(g.degree().values()))
+    degree = np.array(g.degree())[:,1]
     results = powerlaw.Fit(degree)
     return results.power_law.alpha

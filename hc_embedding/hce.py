@@ -74,9 +74,11 @@ def hc_embedding(G, pre_weighting='RA1', embedding=None, angular='EA'):
 
     beta = 1 / (pl_exponent_fit.get_pl_exponent(G) - 1)
     radii = radial_coord.radial_coord_deg(G, beta)
-
+    print(coords.shape)
+    print(radii.shape)
+    return coords, radii
     coords = coords * radii[..., None]
-    return {node: coord for node, coord in zip(G.nodes(), coords)}
+    return {node: coord for node, coord in zip(G.nodes, coords)}
 
 
 def draw_hce(G, title=''):
