@@ -36,7 +36,7 @@ def external_degree(g):
     Returns: numpy.ndarray
         (N, N) array, each value is the external degree of node i w.r.t. node j.
     """
-    degree = np.array(g.degree())[:, 1].astype(float)
+    degree = np.array(list(g.degree().values())).astype(float)
     adj = nx.to_numpy_array(g)
     cn = number_of_common_neighbors(g)
     d = np.repeat(degree.reshape(1, -1), degree.shape[0], axis=0)
@@ -44,7 +44,7 @@ def external_degree(g):
     return ext_degree.T
 
 def RA1_weights(g):
-    degree = np.array(g.degree())[:, 1].astype(float)
+    degree = np.array(list(g.degree().values())).astype(float)
     di, dj = np.meshgrid(degree, degree)
     cn = number_of_common_neighbors(g)
     return (di + dj + di * dj) / (1 + cn)

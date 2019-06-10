@@ -63,9 +63,9 @@ def hc_embedding(G, pre_weighting='RA1', embedding=None, angular='EA'):
     Returns: numpy.ndarray
         (N, 2) array that contains the spatial (x, y) coordinates of the embedded network.
     """
-    weight_func = getattr(pre_weights, f'{pre_weighting}_weights')
+    weight_func = getattr(pre_weights, pre_weighting + '_weights')
     embedding_model = embedding or manifold.SpectralEmbedding()
-    angular_func = getattr(angular_coords, f'{angular}_coords')
+    angular_func = getattr(angular_coords, angular + '_coords')
 
     weights = weight_func(G)
     embedded_weights = embedding_model.fit_transform(weights)
@@ -76,7 +76,8 @@ def hc_embedding(G, pre_weighting='RA1', embedding=None, angular='EA'):
     radii = radial_coord.radial_coord_deg(G, beta)
 
     coords = coords * radii[..., None]
-    return {node: coord for node, coord in zip(G.nodes, coords)}
+    print(coords)
+    return {node: coord for node, coord in zip(G.nodes(), coords)}
 
 
 def draw_hce(G, title=''):

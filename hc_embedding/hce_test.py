@@ -22,5 +22,5 @@ if __name__ == '__main__':
 
     for G, title in zip(graphs, labels):
         draw_hce(G, title)
-        plt.savefig(f"{title.lower().replace(' ', '_')}_test.png")
+        plt.savefig(str(title.lower().replace(' ', '_')) + "_test.png")
         plt.close()
